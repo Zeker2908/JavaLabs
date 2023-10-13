@@ -28,7 +28,21 @@ public class DwellingFloorTest {
         int actualFlatsQuantity = floor.getFlatsQuantity();
         assertEquals(expectedFlatsQuantity, actualFlatsQuantity);
     }
-
+    @Test
+    void testGetFlats() {
+        Flat[] flats = {new Flat(50.0, 2), new Flat(75.0, 3), new Flat(60.0, 1)};
+        DwellingFloor floor = new DwellingFloor(flats);
+        Flat[] expectedFlats = floor.getFlats();
+        assertArrayEquals(flats, expectedFlats);
+    }
+    @Test
+    void testGetFlatsByIndex() {
+        Flat[] flats = {new Flat(50.0, 2), new Flat(75.0, 3), new Flat(60.0, 1)};
+        DwellingFloor floor = new DwellingFloor(flats);
+        Flat expectedFlat = flats[1];
+        Flat actualFlat = floor.getFlats(1);
+        assertEquals(expectedFlat, actualFlat);
+    }
     @Test
     void testSetFlat() {
         DwellingFloor floor = new DwellingFloor(3);
