@@ -1,7 +1,6 @@
 import org.junit.jupiter.api.Test;
 import buildings.*;
 import static org.junit.jupiter.api.Assertions.*;
-
 public class DwellingFloorTest {
     @Test
     void testGetTotalFlats() {

@@ -8,7 +8,6 @@ import java.util.ArrayList;
 public class Dwelling {
     private DwellingFloor[] floors;
 
-
     public Dwelling(int numberOfFloors, int[] flatsPerFloor) {
         floors = new DwellingFloor[numberOfFloors];
         for (int i = 0; i < numberOfFloors; i++) {
