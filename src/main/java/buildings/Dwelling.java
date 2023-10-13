@@ -147,7 +147,8 @@ public class Dwelling {
 
     // Метод для получения массива квартир по убыванию/увеличению площади
     public Flat[] getSortFlatsBySquare(int order) {
-        // Создаем список всех квартир дома
+        if((order==-1)|(order==1)) {
+            // Создаем список всех квартир дома
             List<Flat> allFlats = new ArrayList<>();
             for (DwellingFloor floor : floors) {
                 for (int i = 0; i < floor.getTotalFlats(); i++) {
@@ -161,5 +162,14 @@ public class Dwelling {
 
             // Преобразуем список в массив и возвращаем
             return allFlats.toArray(new Flat[0]);
+        }
+        else {
+            if(order>0) {
+                return this.getSortFlatsBySquare(1);
+            }
+            else {
+                return this.getSortFlatsBySquare(-1);
+            }
+        }
     }
 }

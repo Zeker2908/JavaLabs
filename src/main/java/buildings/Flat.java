@@ -1,12 +1,13 @@
 package buildings;
-
 public class Flat {
+    final double DEF_SQUARE=50;
+    final int DEF_QUANTITY=2;
     private double square;
     private int quantity;
 
     public Flat(){
-        this.square=50;
-        this.quantity=2;
+        this.square=DEF_SQUARE;
+        this.quantity=DEF_QUANTITY;
     }
     public Flat(double square){
         this.square=square;
