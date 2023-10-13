@@ -74,7 +74,6 @@ public class DwellingFloor {
         else {
             System.out.println("Неверный номер квартиры");
         }
-
     }
     public double getBestSquare() {
         if (flats.length == 0) {

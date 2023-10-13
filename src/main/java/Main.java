@@ -2,7 +2,6 @@ import buildings.*;
 
 public class Main {
     public static void main(String[] args) {
-        // Создаем экземпляр многоэтажного здания
         int[] flatsPerFloor = {3, 4, 2}; // Количество квартир на каждом этаже
         double[][] flatData = {
                 {60.5, 2},
@@ -58,5 +57,10 @@ public class Main {
         for (int i = 0; i < sortedFlats.length; i++) {
             System.out.println("Квартира " + (i + 1) + ": " + sortedFlats[i].getSquare() + " кв. м");
         }
+
+        // Удаление квартиры на 2-м этаже (индексация с 0)
+        floors[1].deleteFlat(1);
+        System.out.println("\nИнформация после удаления квартиры:");
+        System.out.println("Общее количество квартир в доме: " + dwelling.getFlatsQuantity());
     }
 }
