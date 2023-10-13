@@ -12,7 +12,7 @@ public class Main {
                 {100.1, 4},
                 {92.5, 3},
                 {55.3, 2}
-        }; // Площадь и количество комнат в каждой квартире
+        };
 
         DwellingFloor[] floors = new DwellingFloor[flatsPerFloor.length];
         for (int i = 0; i < flatsPerFloor.length; i++) {
@@ -52,13 +52,12 @@ public class Main {
             System.out.println("\nВ доме нет квартир.");
         }
 
-        Flat[] sortedFlats = dwelling.getSortFlatsBySquare(-1); // Убывание площади
+        Flat[] sortedFlats = dwelling.getSortFlatsBySquare(-1);
         System.out.println("\nКвартиры в порядке убывания площади:");
         for (int i = 0; i < sortedFlats.length; i++) {
             System.out.println("Квартира " + (i + 1) + ": " + sortedFlats[i].getSquare() + " кв. м");
         }
 
-        // Удаление квартиры на 2-м этаже (индексация с 0)
         floors[1].deleteFlat(1);
         System.out.println("\nИнформация после удаления квартиры:");
         System.out.println("Общее количество квартир в доме: " + dwelling.getFlatsQuantity());

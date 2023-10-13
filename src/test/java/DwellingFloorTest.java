@@ -15,7 +15,7 @@ public class DwellingFloorTest {
     void testGetFlatsSquare() {
         Flat[] flats = {new Flat(50.0), new Flat(75.0), new Flat(60.0)};
         DwellingFloor floor = new DwellingFloor(flats);
-        double expectedFlatsSquare = 185.0; // 50.0 + 75.0 + 60.0
+        double expectedFlatsSquare = 185.0;
         double actualFlatsSquare = floor.getFlatsSquare();
         assertEquals(expectedFlatsSquare, actualFlatsSquare, 0.001); // Сравниваем с погрешностью
     }
@@ -24,7 +24,7 @@ public class DwellingFloorTest {
     void testGetFlatsQuantity() {
         Flat[] flats = {new Flat(50.0, 2), new Flat(75.0, 3), new Flat(60.0, 1)};
         DwellingFloor floor = new DwellingFloor(flats);
-        int expectedFlatsQuantity = 6; // 2 + 3 + 1
+        int expectedFlatsQuantity = 6;
         int actualFlatsQuantity = floor.getFlatsQuantity();
         assertEquals(expectedFlatsQuantity, actualFlatsQuantity);
     }

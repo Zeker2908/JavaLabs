@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Dwelling {
     private DwellingFloor[] floors;
 
-    // Конструктор 1, принимающий количество этажей и массив количества квартир по этажам
+
     public Dwelling(int numberOfFloors, int[] flatsPerFloor) {
         floors = new DwellingFloor[numberOfFloors];
         for (int i = 0; i < numberOfFloors; i++) {
@@ -16,17 +16,15 @@ public class Dwelling {
         }
     }
 
-    // Конструктор 2, принимающий массив этажей дома
     public Dwelling(DwellingFloor[] floors) {
         this.floors = floors;
     }
 
-    // Метод для получения общего количества этажей дома
+
     public int getDwellingFloorQuantity() {
         return floors.length;
     }
 
-    // Метод для получения общего количества квартир дома
     public int getFlatsQuantity() {
         int totalFlats = 0;
         for (DwellingFloor floor : floors) {
@@ -35,7 +33,6 @@ public class Dwelling {
         return totalFlats;
     }
 
-    // Метод для получения общей площади квартир дома
     public double getFlatsSquare() {
         double totalSquare = 0.0;
         for (DwellingFloor floor : floors) {
@@ -44,7 +41,7 @@ public class Dwelling {
         return totalSquare;
     }
 
-    // Метод для получения общего количества комнат дома
+
     public int getRoomsQuantity() {
         int totalRooms = 0;
         for (DwellingFloor floor : floors) {
@@ -53,7 +50,7 @@ public class Dwelling {
         return totalRooms;
     }
 
-    // Метод для получения массива этажей жилого дома
+
     public DwellingFloor[] getDwellingFloors() {
         return floors;
     }
@@ -67,14 +64,12 @@ public class Dwelling {
         }
     }
 
-    // Метод для изменения этажа по его номеру в доме
     public void setDwellingFloor(int index, DwellingFloor newDwellingFloor) {
         if (index >= 0 && index < floors.length) {
             floors[index] = newDwellingFloor;
         }
     }
 
-    // Метод для получения объекта квартиры по ее номеру в доме
     public Flat getFlat(int index) {
         for (DwellingFloor floor : floors) {
             if (index >= 0 && index < floor.getTotalFlats()) {
@@ -86,7 +81,7 @@ public class Dwelling {
         return null;
     }
 
-    // Метод для изменения объекта квартиры по ее номеру в доме
+
     public void setFlat(int index, Flat newFlat) {
         for (DwellingFloor floor : floors) {
             if (index >= 0 && index < floor.getTotalFlats()) {
@@ -98,7 +93,7 @@ public class Dwelling {
         }
     }
 
-    // Метод для добавления квартиры в дом по будущему номеру квартиры в доме
+
     public void addFlat(int index, Flat newFlat) {
         for (DwellingFloor floor : floors) {
             if (index >= 0 && index <= floor.getTotalFlats()) {
@@ -110,7 +105,6 @@ public class Dwelling {
         }
     }
 
-    // Метод для удаления квартиры по ее номеру в доме
     public void deleteFlat(int index) {
         for (DwellingFloor floor : floors) {
             if (index >= 0 && index < floor.getTotalFlats()) {
@@ -122,13 +116,13 @@ public class Dwelling {
         }
     }
 
-    // Метод для получения самой большой по площади квартиры дома
+
     public Flat getBestFlatBySquare() {
         Flat bestFlat = null;
         double maxSquare = 0.0;
 
         for (DwellingFloor floor : floors) {
-            if (floor.getTotalFlats() > 0) { // Проверяем, есть ли квартиры на этаже
+            if (floor.getTotalFlats() > 0) {
                 Flat[] flats = floor.getFlats();
                 for (Flat flat : flats) {
                     double square = flat.getSquare();
@@ -145,10 +139,9 @@ public class Dwelling {
 
 
 
-    // Метод для получения массива квартир по убыванию/увеличению площади
+
     public Flat[] getSortFlatsBySquare(int order) {
         if((order==-1)|(order==1)) {
-            // Создаем список всех квартир дома
             List<Flat> allFlats = new ArrayList<>();
             for (DwellingFloor floor : floors) {
                 for (int i = 0; i < floor.getTotalFlats(); i++) {
@@ -156,11 +149,9 @@ public class Dwelling {
                 }
             }
 
-            // Сортируем квартиры по площади
 
             allFlats.sort((flat1, flat2) -> Double.compare(flat1.getSquare(), flat2.getSquare()) * order);
 
-            // Преобразуем список в массив и возвращаем
             return allFlats.toArray(new Flat[0]);
         }
         else {
