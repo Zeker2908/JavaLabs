@@ -11,7 +11,7 @@ public class Flat {
     }
     public Flat(double square){
         this.square=square;
-        this.quantity=2;
+        this.quantity=DEF_QUANTITY;
     }
     public Flat(double square, int quantity){
         this.square=square;
