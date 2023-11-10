@@ -1,12 +1,9 @@
 package buildings;
-
-import java.util.Comparator;
 import java.util.List;
 import java.util.ArrayList;
 
-
-public class Dwelling {
-    private DwellingFloor[] floors;
+public class Dwelling implements Building {
+    private Floor[] floors;
 
     public Dwelling(int numberOfFloors, int[] flatsPerFloor) {
         floors = new DwellingFloor[numberOfFloors];
@@ -19,14 +16,13 @@ public class Dwelling {
         this.floors = floors;
     }
 
-
-    public int getDwellingFloorQuantity() {
+    public int getFloorsQuantity() {
         return floors.length;
     }
 
     public int getFlatsQuantity() {
         int totalFlats = 0;
-        for (DwellingFloor floor : floors) {
+        for (Floor floor : floors) {
             totalFlats += floor.getTotalFlats();
         }
         return totalFlats;
@@ -34,28 +30,27 @@ public class Dwelling {
 
     public double getFlatsSquare() {
         double totalSquare = 0.0;
-        for (DwellingFloor floor : floors) {
+        for (Floor floor : floors) {
             totalSquare += floor.getFlatsSquare();
         }
         return totalSquare;
     }
 
 
-    public int getRoomsQuantity() {
+    public int getTotalFlats() {
         int totalRooms = 0;
-        for (DwellingFloor floor : floors) {
+        for (Floor floor : floors) {
             totalRooms += floor.getFlatsQuantity();
         }
         return totalRooms;
     }
 
 
-    public DwellingFloor[] getDwellingFloors() {
+    public Floor[] getFloors() {
         return floors;
     }
 
-    // Метод для получения объекта этажа по его номеру в доме
-    public DwellingFloor getDwellingFloor(int index) {
+    public Floor getFloor(int index) {
         if (index >= 0 && index < floors.length) {
             return floors[index];
         } else {
@@ -63,16 +58,16 @@ public class Dwelling {
         }
     }
 
-    public void setDwellingFloor(int index, DwellingFloor newDwellingFloor) {
+    public void setFloor(int index, Floor newFloor) {
         if (index >= 0 && index < floors.length) {
-            floors[index] = newDwellingFloor;
+            floors[index] = newFloor;
         }
     }
 
-    public Flat getFlat(int index) {
-        for (DwellingFloor floor : floors) {
+    public Space getFlat(int index) {
+        for (Floor floor : floors) {
             if (index >= 0 && index < floor.getTotalFlats()) {
-                return floor.getFlats(index);
+                return floor.getFlat(index);
             } else {
                 index -= floor.getTotalFlats();
             }
@@ -81,10 +76,10 @@ public class Dwelling {
     }
 
 
-    public void setFlat(int index, Flat newFlat) {
-        for (DwellingFloor floor : floors) {
+    public void setFlat(int index, Space newSpace) {
+        for (Floor floor : floors) {
             if (index >= 0 && index < floor.getTotalFlats()) {
-                floor.setFlat(index, newFlat);
+                floor.setFlat(index, newSpace);
                 return;
             } else {
                 index -= floor.getTotalFlats();
@@ -93,10 +88,10 @@ public class Dwelling {
     }
 
 
-    public void addFlat(int index, Flat newFlat) {
-        for (DwellingFloor floor : floors) {
+    public void addFlat(int index, Space newSpace) {
+        for (Floor floor : floors) {
             if (index >= 0 && index <= floor.getTotalFlats()) {
-                floor.addFlat(index, newFlat);
+                floor.addFlat(index, newSpace);
                 return;
             } else {
                 index -= floor.getTotalFlats();
@@ -105,7 +100,7 @@ public class Dwelling {
     }
 
     public void deleteFlat(int index) {
-        for (DwellingFloor floor : floors) {
+        for (Floor floor : floors) {
             if (index >= 0 && index < floor.getTotalFlats()) {
                 floor.deleteFlat(index);
                 return;
@@ -115,15 +110,14 @@ public class Dwelling {
         }
     }
 
-
-    public Flat getBestFlatBySquare() {
-        Flat bestFlat = null;
+    public Space getBestSpaceBySquare() {
+        Space bestFlat = null;
         double maxSquare = 0.0;
 
-        for (DwellingFloor floor : floors) {
+        for (Floor floor : floors) {
             if (floor.getTotalFlats() > 0) {
-                Flat[] flats = floor.getFlats();
-                for (Flat flat : flats) {
+                Space[] flats = floor.getFlats();
+                for (Space flat : flats) {
                     double square = flat.getSquare();
                     if (square > maxSquare) {
                         maxSquare = square;
@@ -136,30 +130,14 @@ public class Dwelling {
         return bestFlat;
     }
 
-
-
-
-    public Flat[] getSortFlatsBySquare(int order) {
-        if((order==-1)|(order==1)) {
-            List<Flat> allFlats = new ArrayList<>();
-            for (DwellingFloor floor : floors) {
+    public  Space[] getSortSpacesBySquare(int order) {
+            List<Space> allFlats = new ArrayList<>();
+            for (Floor floor : floors) {
                 for (int i = 0; i < floor.getTotalFlats(); i++) {
-                    allFlats.add(floor.getFlats(i));
+                    allFlats.add(floor.getFlat(i));
                 }
             }
-
-
-            allFlats.sort((flat1, flat2) -> Double.compare(flat1.getSquare(), flat2.getSquare()) * order);
-
-            return allFlats.toArray(new Flat[0]);
-        }
-        else {
-            if(order>0) {
-                return this.getSortFlatsBySquare(1);
-            }
-            else {
-                return this.getSortFlatsBySquare(-1);
-            }
-        }
+            allFlats.sort((flat1, flat2) -> Double.compare(flat1.getSquare(), flat2.getSquare()) *  (int) Math.signum(order));
+            return allFlats.toArray(new Space[0]);
     }
 }

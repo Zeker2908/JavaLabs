@@ -1,5 +1,5 @@
 package buildings;
-public class Flat {
+public class Flat implements Space {
     final double DEF_SQUARE=50;
     final int DEF_QUANTITY=2;
     private double square;
