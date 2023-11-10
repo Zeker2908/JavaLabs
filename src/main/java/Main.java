@@ -1,4 +1,6 @@
 import buildings.*;
+import buildings.impl.Space;
+
 public class Main {
     public static void main(String[] args) {
         int[] flatsPerFloor = {3, 4, 2}; // Количество квартир на каждом этаже

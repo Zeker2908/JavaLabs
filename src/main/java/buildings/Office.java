@@ -1,4 +1,7 @@
 package buildings;
+
+import buildings.impl.Space;
+
 public class Office implements Space {
     final double DEF_SQUARE=50;
     final int DEF_QUANTITY=2;

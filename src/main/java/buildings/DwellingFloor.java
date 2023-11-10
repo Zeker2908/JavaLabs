@@ -1,5 +1,8 @@
 package buildings;
 
+import buildings.impl.Floor;
+import buildings.impl.Space;
+
 public class DwellingFloor implements Floor {
     private Space[] flats;
 

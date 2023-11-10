@@ -1,7 +1,10 @@
 package buildings;
+import buildings.impl.Building;
+import buildings.impl.Floor;
+import buildings.impl.Space;
+
 import java.util.List;
 import java.util.ArrayList;
-
 public class Dwelling implements Building {
     private Floor[] floors;
 

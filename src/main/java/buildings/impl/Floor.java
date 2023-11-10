@@ -1,4 +1,4 @@
-package buildings;
+package buildings.impl;
 
 public interface Floor {
     int getTotalFlats();
