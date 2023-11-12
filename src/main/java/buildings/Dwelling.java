@@ -143,4 +143,6 @@ public class Dwelling implements Building {
             allFlats.sort((flat1, flat2) -> Double.compare(flat1.getSquare(), flat2.getSquare()) *  (int) Math.signum(order));
             return allFlats.toArray(new Space[0]);
     }
+
+
 }
