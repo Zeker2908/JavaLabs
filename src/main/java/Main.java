@@ -1,4 +1,6 @@
 import buildings.*;
+import buildings.impl.Space;
+
 public class Main {
     public static void main(String[] args) {
         int[] flatsPerFloor = {3, 4, 2}; // Количество квартир на каждом этаже
@@ -28,22 +30,22 @@ public class Main {
         Dwelling dwelling = new Dwelling(floors);
 
         // Вызов методов класса Dwelling
-        System.out.println("Общее количество этажей в доме: " + dwelling.getDwellingFloorQuantity());
+        System.out.println("Общее количество этажей в доме: " + dwelling.getFloorsQuantity());
         System.out.println("Общее количество квартир в доме: " + dwelling.getFlatsQuantity());
         System.out.println("Общая площадь квартир в доме: " + dwelling.getFlatsSquare());
-        System.out.println("Общее количество комнат в доме: " + dwelling.getRoomsQuantity());
+        System.out.println("Общее количество комнат в доме: " + dwelling.getTotalFlats());
 
         System.out.println("\nИнформация о каждом этаже:");
         for (int i = 0; i < floors.length; i++) {
             System.out.println("Этаж " + (i + 1) + ":");
             DwellingFloor floor = floors[i];
-            Flat[] floorFlats = floor.getFlats();
+            Space[] floorFlats = floor.getFlats();
             for (int j = 0; j < floorFlats.length; j++) {
                 System.out.println("   Квартира " + (j + 1) + ": " + floorFlats[j].getSquare() + " кв. м, " + floorFlats[j].getQuantity() + " комн.");
             }
         }
 
-        Flat bestFlat = dwelling.getBestFlatBySquare();
+        Space bestFlat = dwelling.getBestSpaceBySquare();
         if (bestFlat != null) {
             System.out.println("\nСамая большая по площади квартира:");
             System.out.println("Площадь: " + bestFlat.getSquare() + " кв. м, Количество комнат: " + bestFlat.getQuantity());
@@ -51,7 +53,7 @@ public class Main {
             System.out.println("\nВ доме нет квартир.");
         }
 
-        Flat[] sortedFlats = dwelling.getSortFlatsBySquare(-1);
+        Space[] sortedFlats = dwelling.getSortSpacesBySquare(-1);
         System.out.println("\nКвартиры в порядке убывания площади:");
         for (int i = 0; i < sortedFlats.length; i++) {
             System.out.println("Квартира " + (i + 1) + ": " + sortedFlats[i].getSquare() + " кв. м");
