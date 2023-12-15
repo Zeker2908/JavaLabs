@@ -1,32 +1,33 @@
 package buildings;
-public class Flat {
-    final double DEF_SQUARE=50;
-    final int DEF_QUANTITY=2;
-    private double square;
-    private int quantity;
 
-    public Flat(){
-        this.square=DEF_SQUARE;
-        this.quantity=DEF_QUANTITY;
+import buildings.impl.AbstractSpace;
+import buildings.impl.Space;
+import lombok.Data;
+
+@Data
+public class Flat extends AbstractSpace implements Space {
+    final double DEF_SQUARE = 50;
+    final int DEF_QUANTITY = 2;
+
+    public Flat() {
+        super();
     }
-    public Flat(double square){
-        this.square=square;
-        this.quantity=DEF_QUANTITY;
+
+    public Flat(double square) {
+        super(square);
     }
-    public Flat(double square, int quantity){
-        this.square=square;
-        this.quantity=quantity;
+
+    public Flat(double square, int quantity) {
+        super(square, quantity);
     }
-    public double getSquare(){
-        return this.square;
+
+    @Override
+    protected double getDefaultSquare() {
+        return DEF_SQUARE;
     }
-    public void setSquare(double newSquare){
-        square=newSquare;
-    }
-    public int getQuantity(){
-        return quantity;
-    }
-    public void setQuantity(int newQuantity){
-        quantity=newQuantity;
+
+    @Override
+    protected int getDefaultQuantity() {
+        return DEF_QUANTITY;
     }
 }
