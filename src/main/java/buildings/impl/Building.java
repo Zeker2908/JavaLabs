@@ -1,4 +1,4 @@
-package buildings.impl;
+package buildings;
 
 public interface Building {
     int getFloorsQuantity();
